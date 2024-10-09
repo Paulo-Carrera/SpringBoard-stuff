@@ -1,0 +1,14 @@
+STATUS CODES
+
+Status Codes
+To issue status codes with our responses, we can call the res.status(code)
+method first, and then chain our .json() to finish the response.
+demo/app.js
+------------------------------------------------------------------------------------------------------------------------
+/** Sample of returning status code */
+
+app.get('/whoops', function(req, res){
+    return res.status(404).json('Whoops! Nothing here!');
+});
+------------------------------------------------------------------------------------------------------------------------
+

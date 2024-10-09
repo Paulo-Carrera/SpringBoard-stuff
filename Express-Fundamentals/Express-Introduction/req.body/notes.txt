@@ -1,0 +1,24 @@
+REQ.BODY
+
+Other Useful Request Properties
+- query string (request.query)
+- headers (request.headers)
+- what about the body of the request ?
+
+
+Parsing the Body 
+Tell Express to parse request bodies for either form data or JSON :
+demo/app.js
+------------------------------------------------------------------------------------------------------------------
+const express = require('express');
+
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended : true }));
+------------------------------------------------------------------------------------------------------------------
+
+
+
+
+

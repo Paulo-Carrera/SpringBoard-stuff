@@ -1,0 +1,19 @@
+YOUR FIRST EXPRESS SERVER 
+
+A Server In A Few Lines
+demo/tiny.js
+----------------------------------------------------------------------------------------------------------------
+const express = require('express');
+
+const app = express();
+
+app.listen(3000, function(){
+    console.log('App on port 3000');
+});
+----------------------------------------------------------------------------------------------------------------
+
+- App doesn't do anything except respond 404s, but server is running !
+- app.listen takes a port and a callback
+    - Binds the server to port & listens for requests there.
+    - Calls callback once server has started up.
+- app.listen should ALWAYS be at the bottom of the file !

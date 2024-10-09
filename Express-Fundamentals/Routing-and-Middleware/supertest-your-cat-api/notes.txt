@@ -1,0 +1,20 @@
+SUPERTEST YOUR CAT API 
+
+Integrating Tests in Express: Setup 
+
+Integration Tests
+- Making sure the parts work together 
+- Essential to have along with unit tests!
+- More involved than unit tests 
+
+Integration Tests with Supertest 
+- A library for testing Express applications
+- Our tool for integration testing 
+- Like Flask's test client: can make requests against app in tests 
+- Docs : https://github.com/visionmedia/supertest 
+
+Installing Supertest 
+---------------------------------------------------------------------------------------------------------------------
+$ npm i --save-dev supertest 
+---------------------------------------------------------------------------------------------------------------------
+

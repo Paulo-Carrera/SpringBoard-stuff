@@ -1,0 +1,31 @@
+MIDDLEWARE
+
+What is Middleware ?
+- It is code that runs in the middle of the request / resposne cycle !
+- In Express, middleware are functions that get access to the req and res
+objects and can also call the 'next' function .
+- express.json() is an example of middleware 
+- Our 404 and global error handler are example of middleware 
+
+
+When would you use it ?
+It opens up the door for separating our code into more logical groupings
+and providing more robust / abstracted error handling .
+
+- Logging useful information on every request 
+- Adding a current_user for every request (like g in Flask!)
+- Ensuring that users are authenticated 
+- Ensuring that a user is authorized to access an endpoint
+
+
+What does it look like ?
+- In another file called middleware.js 
+demo/routing-demo/middleware.js 
+---------------------------------------------------------------------------------
+function logger(req, res, next){
+    console.log(`Sending ${req.method} request to ${req.path}.`);
+    return next(); 
+}
+---------------------------------------------------------------------------------
+
+

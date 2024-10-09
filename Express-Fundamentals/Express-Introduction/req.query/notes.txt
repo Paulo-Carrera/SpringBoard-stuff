@@ -1,0 +1,5 @@
+REQ.QUERY 
+
+Other Useful Request Properties
+- query string (request.query)
+

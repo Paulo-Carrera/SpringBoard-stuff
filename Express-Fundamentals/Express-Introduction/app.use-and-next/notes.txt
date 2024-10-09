@@ -1,0 +1,9 @@
+APP.USE AND NEXT 
+
+Almost there ...
+
+- Now throwing errors, but server never responds with anything. 
+- We need to instruct Express how to respond when we throw error.
+- For that, we need to introduce two new concepts, error handling and next 
+
+

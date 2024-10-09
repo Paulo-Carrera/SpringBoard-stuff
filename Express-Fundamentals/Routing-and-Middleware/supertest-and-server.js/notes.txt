@@ -1,0 +1,33 @@
+SUPERTEST AND SERVER.JS
+
+Installing Supertest 
+--------------------------------------------------------------------------------------------------------------------
+$ npm i --save-dev supertest
+--------------------------------------------------------------------------------------------------------------------
+
+Creating a server.js 
+- To create a test client , we are going to need our app variable from app.js 
+- Right now we are combining logic to create the app variable and start the server all in one file
+- To ensure we don't start the server when we import our app variable in our tests,
+we're going to move out our app.listen code into a file called server.js 
+
+(app.listen is the line that starts the server.)
+
+What our app.js looks like 
+demo/supertest-demo/app.js 
+--------------------------------------------------------------------------------------------------------------------
+/** general error handler */
+
+app.use((err, req, res, next)=> {
+    res.status(err.status || 500);
+
+    return res.json({
+        error : err.message,
+    });
+});
+
+module.exports = app ;
+--------------------------------------------------------------------------------------------------------------------
+
+
+

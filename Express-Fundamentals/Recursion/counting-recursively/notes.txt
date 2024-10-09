@@ -1,0 +1,45 @@
+COUNTING RECURSIVELY
+
+Loops and Recursion
+Any loop can be written instead with recursion
+Any recursion can be written instead with a loop 
+... but often one way is easier for a problem
+
+Using a while loop :
+-------------------------------------------------------------------------------
+function count(){
+    let n = 1;
+
+    while(n <= 3){
+        console.log(n);
+        n += 1;
+    }
+}
+
+count();
+-------------------------------------------------------------------------------
+
+Using recursion :
+-------------------------------------------------------------------------------
+function count(n = 1){
+    if (n > 3) return;
+
+    console.log(n);
+    count(n + 1);
+}
+
+count();
+-------------------------------------------------------------------------------
+
+More Counting 
+-------------------------------------------------------------------------------
+function count(n = 1){
+    if(n > 3) return;
+
+    console.log(n);
+    count(n + 1);
+    console.log(n);
+}
+
+count();
+-------------------------------------------------------------------------------

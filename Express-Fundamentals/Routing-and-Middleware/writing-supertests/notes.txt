@@ -1,0 +1,75 @@
+WRITING SUPERTESTS
+
+What our test setup looks like 
+demo/supertest-demo/routes/cats-routes.test.js
+---------------------------------------------------------------------------------------------------------------------
+process.env.NODE_ENV = 'test';
+
+const request = require('supertest');
+
+const app = require('../app');
+let cats = require('../fakeDB');
+
+let pickles = { name : 'Pickles' };
+
+beforeEach(function(){
+    cats.push(pickles);
+});
+
+afterEach(function(){
+    // make sure this *mutates*, not redifines 'cats'
+    cats.length = 0;
+});
+---------------------------------------------------------------------------------------------------------------------
+
+
+What should I test ?
+- Getting all cats 
+- Getting a single cat 
+    -   what finding successfully looks like 
+    -   what happens when it is not found
+- Deleting a cat 
+    -   what deleting successfully looks like 
+    -   what happens when it is not found 
+- Adding a cat 
+    -   what creating successfully looks like 
+    -   what happens when you create a duplicate cat 
+    -   what happens when you are missing required data
+
+
+Testing Reading
+demo/supertest-demo/routes/cats-routes.test.js 
+---------------------------------------------------------------------------------------------------------------------
+/** GET /cats - returns '{cats : [cat, ...]}' */
+
+describe('GET /cats', function(){
+    test('Gets a list of cats', async function(){
+        const resp = await request(app).get('/cats');
+        expect(resp.statusCode).toBe(200);
+
+        expect(resp.body).toEqual({cats : [pickles]});
+    });
+});
+---------------------------------------------------------------------------------------------------------------------
+
+Test Creating 
+---------------------------------------------------------------------------------------------------------------------
+/** POST /cats -create cat from data; return '{cat : cat}' */
+
+describe('POST /cats', function(){
+    test('Creates a new cat', async function(){
+        const res = await request(app)
+        .post('/cats')
+        .send({
+            name : 'Ezra'
+        });
+        expect(resp.statusCode).toBe(201);
+        expect(resp.body).toEqual({
+            cat : { name : 'Ezra' }
+        });
+    });
+});
+---------------------------------------------------------------------------------------------------------------------
+
+
+

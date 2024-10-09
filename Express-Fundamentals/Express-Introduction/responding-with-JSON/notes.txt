@@ -1,0 +1,14 @@
+RESPONDING WITH JSON 
+
+Returning JSON
+It's dead simple !
+
+demo/app.js
+-------------------------------------------------------------------------------------------------------------------
+/** Show JSON on instructor */
+
+app.get('/api/staff/:fname', function(req,res){
+    return res.json({ fname : req.params.fname });
+});
+-------------------------------------------------------------------------------------------------------------------
+

@@ -1,0 +1,19 @@
+REQ.PARAMS
+
+URL Parameters 
+Specify parameters in the route by prefixing them with a colon : .
+
+demo/app.js
+-----------------------------------------------------------------------------------------------------------------
+/** Show info on instructor */
+
+app.get('/staff/:fname', function(req, res){
+    return res.send(`This instructor is ${req.params.fname}`);
+});
+-----------------------------------------------------------------------------------------------------------------
+
+FLASK : @app.route('/books/<id>')
+EXPRESS : app.get('/books/:id')
+
+
+

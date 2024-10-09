@@ -1,0 +1,45 @@
+YOUR FIRST ROUTE
+
+Route Handlers 
+Route handlers are event listeners -- they're like Flask view functions
+
+demo/first_route.py
+----------------------------------------------------------------------------------------------------------------
+from flask import Flask 
+
+app = Flask(__name__)
+
+@app.route('/dogs')
+def bark():
+    return 'Dogs go brk brk'
+----------------------------------------------------------------------------------------------------------------
+
+
+demo/firstRoute.js
+----------------------------------------------------------------------------------------------------------------
+const express = require('express');
+
+const app = express()
+
+app.get('/dogs', function(){
+    return response.send('Dogs go brk brk');
+});
+
+app.listen(3000, function(){
+    console.log('App on port 3000');
+});
+----------------------------------------------------------------------------------------------------------------
+
+
+
+Route Handler Callbacks 
+- Every handler should have a callback with two parameters :
+    - request : information about request (query string, url parameters, form data)
+    - response : useful methods for sending a response (html, text, json, etc.)
+    - You will commonly see these parameters named req and res 
+
+
+app.get('/dogs') listens for a GET request to the /dogs endpoint.
+In the callback, response.send() issues a response of plain-text or HTML.
+
+

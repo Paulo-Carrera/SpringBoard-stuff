@@ -1,0 +1,29 @@
+RECURSIVE BIG O
+
+Runtime
+What's the runtime ?
+---------------------------------------------------------------------------------------------------------------------------------
+function sum(nums){
+    if (nums.length === 0) return 0 ;
+
+    return nums[0] + sum(nums.slice(1)) ;
+}
+---------------------------------------------------------------------------------------------------------------------------------
+
+O(n^2) - we keep making new lists !
+It also has O(n^2) runspace - keeping all lists in memory !
+
+
+Improving Runtime 
+Often, you can keep track of position in array, rather than slice :
+---------------------------------------------------------------------------------------------------------------------------------
+function sum(nums, i = 0){
+    if (i === nums.length) return 0 ;
+
+    return nums[i] + sum(nums, i + 1) ;
+}
+---------------------------------------------------------------------------------------------------------------------------------
+
+Now runtime and runspace are O(n) 
+
+

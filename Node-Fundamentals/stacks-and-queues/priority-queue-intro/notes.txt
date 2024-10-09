@@ -1,0 +1,44 @@
+PRIORITY QUEUE INTRO
+
+Priority Queue 
+An ADT for a collection :
+- Add item (with priority)
+- Remove highest-priority item 
+
+Typical Methods 
+
+add(pri, item)
+    Add item to queue 
+poll()
+    Remove & return top-priority item 
+peek()
+    Return (don't remove) top-priority item 
+isEmpty()
+    Are there items in queue ? 
+
+
+Implementation
+What's a good implementation for priority queues ?
+- Arrays ?
+- Linked Lists ?
+- Doubly Linked Lists ?
+
+Consider with two strategies :
+- Keep unsorted, add to end, find top priority on poll 
+- Keep sorted, add at right place, top priority is first 
+
+Keep unsorted, add to end, find top priority on poll :
+- Array : NO , peek & poll would be O(n)
+- Linked List : NO , peek & poll would be O(n)
+- Doubly Linked List : NO , peek & poll would be O(n)
+
+Keep sorted, add at right place, top priority is first :
+- Array : NO , add & poll would be O(n)
+- Linked List : NO , add would be O(n)
+- Doubly Linked List : NO , add would be O(n)
+
+Heaps 
+Data structure organized for priority queues : heap 
+
+
+

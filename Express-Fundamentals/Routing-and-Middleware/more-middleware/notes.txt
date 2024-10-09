@@ -1,0 +1,9 @@
+MORE MIDDLEWARE
+
+Why do we need next ?
+- If we do not include it, we will not make it to the next route !
+- Notice here we are not passing anything to next. 
+- If argument are passed to next, Express always treats this as an error.
+
+
+

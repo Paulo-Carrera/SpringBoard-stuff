@@ -1,0 +1,9 @@
+INTRO TO RECURSION
+
+Recursion
+Having a function call itself
+Also : a very powerful programming technique
+Also : a popular interview question topic 
+
+The Jokes
+recursion [ri-kur-zhuh n]: noun, see "recursion"

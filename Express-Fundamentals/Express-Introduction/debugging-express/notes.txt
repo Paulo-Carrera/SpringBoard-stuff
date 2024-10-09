@@ -1,0 +1,27 @@
+DEBUGGING EXPRESS
+
+Current Debugging Process
+console.log()
+like print in Python, often very useful 
+
+Debugging Node
+Can also use the Chrome Dev Tools debugger
+Start up Node with --inspect-brk flag:
+---------------------------------------------------------------------------------------------------------------------
+$ node --inspect-brk sumEvens.js
+Debugger listening on ws://127.0.0.1:9229/a98973...
+For help, see : https://nodejs.org/en/docs/inspector
+---------------------------------------------------------------------------------------------------------------------
+
+Open chrome://inspect to pull it up in the Chrome Debugger ! 
+
+Debugging Express 
+- With --inspect-brk a breakpoint is put on the first line of your app
+- Can start with --inspect to not stop at first line: 
+-------------------------------------------------------------------------------------------------------------------------
+$ nodemon --inspect 
+Debugger listening on ws://127.0.0.1:9229/a98973...
+For help, see : https://nodejs.org/en/docs/inspector
+-------------------------------------------------------------------------------------------------------------------------
+
+- Use the debugger keyword in code to activate a breakpoint 

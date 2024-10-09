@@ -1,0 +1,19 @@
+ROUTES CONTINUED
+
+The Request-Response Cycle 
+When you start a server, Express runs through the file
+and registers all the event listeners before app.listen at the bottom.
+
+Whenever a user makes a request, Express invokes the first matching route 
+handler it finds until a response is issued via a method on the response object.
+
+This is called the request-response cycle for Express.
+
+
+Route Methods
+Here are the route methods you will likely use, one for each HTTP verb :
+- app.get(path, callback)
+- app.post(path, callback)
+- app.put(path, callback)
+- app.patch(path, callback)
+- app.delete(path, callback)

@@ -1,0 +1,20 @@
+SUM ARRAY RECURSIVELY
+
+Returning Data
+
+Finding Sum of List
+
+"Return sum of list using recursion"
+- What's our base case ?
+    - An empty list has sum = 0!
+
+
+---------------------------------------------------------------------------------
+function sum(nums){
+    // base case 
+
+    // normal case
+}
+
+sum([1,2,4,5]);
+---------------------------------------------------------------------------------

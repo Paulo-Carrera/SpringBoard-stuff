@@ -1,0 +1,9 @@
+USING EXTERNAL MIDDLEWARE
+
+- Instead of writing our own logger, we will use a more robust one called
+morgan 
+    -   install it -npm install morgan
+    -   require it - const morgan = require('morgan');
+    -   use it - app.use(morgan('dev'));
+    
+

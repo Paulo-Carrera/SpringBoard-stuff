@@ -1,0 +1,51 @@
+BASE CASE
+
+Requirements
+
+Base Case 
+----------------------------------------------------------------------------------------
+function count(n = 1){
+    if (n > 3) return ;
+
+    console.log(n);
+    count(n + 1);
+}
+----------------------------------------------------------------------------------------
+
+- Every recursive function needs a base case 
+    - How do we know when we're done ?
+
+
+Base Case 
+Often a base case is a "degenerate case"
+- concat([1,2,3]) -> 
+- "1" + concat([2,3]) ->
+- "1" + "2" + concat([3]) ->
+- "1" + "2" + "3" + concat([]) <- degenerate : empty array
+
+
+No Base Case    (would go on forever and stack overflow!)
+----------------------------------------------------------------------------------------
+function count(n = 1){
+    console.log(n);
+    count(n + 1);
+}
+
+count();
+----------------------------------------------------------------------------------------
+
+Explicit vs. Hidden Base Cases  
+----------------------------------------------------------------------------------------
+function count(n=1){
+    if(n < 3){
+        console.log(n);
+        count(n + 1);
+    }
+}
+----------------------------------------------------------------------------------------
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+WRITING SUPERTEST CONTINUED
+
+Testing Updating
+demo/supertest-demo/routes/cats-routes.test.js
+---------------------------------------------------------------------------------------------------------------------------
+/** PATCH /cats/[name] - update cat ; return '{cat : cat}' */
+
+describe('PATCH /cats/[name]', function(){
+    test('Updates a single cat', async function(){
+        const res = await request(app)
+        .patch(`/cats/${pickles.name}`)
+        .send({
+            name : "Troll"
+        });
+        expect(res.statusCode).toBe(200);
+        expect(res.body).toEqual({
+            cat : {name : 'Troll'}
+        });
+    });
+
+    test('Responds with 404 if id invalid', function(){
+        const res = await request(app).patch('/cats/0');
+        expect(res.statusCode).toBe(404);
+    });
+});
+---------------------------------------------------------------------------------------------------------------------------
+
+Testing Deleting
+demo/supertest-demo/routes/cats-routes.test.js
+---------------------------------------------------------------------------------------------------------------------------
+/ ** DELETE /cats/[name] - delete cat ,
+  *  return `{message : "Cat deleted"}`  */
+
+describe('DELETE /cats/:name', function(){
+    test('Deletes a single cat', async ()=>{
+        const res = await request(app).delete(`/cats/${pickles.name}`);
+        expect(res.statusCode).toBe(200);
+        expect(res.body).toEqual({ message : 'Deleted' });
+    });
+});
+---------------------------------------------------------------------------------------------------------------------------
+
+
+Debugging your tests
+- You can always console.log() inside of your test files 
+- If you'd like to use the chrome dev tools, write the following:
+------------------------------------------------------------------------------------------------------------------------------
+- node --inspect-brk $(which jest) --runInBand NAME_OF_FILE
+------------------------------------------------------------------------------------------------------------------------------
+
+
+Coming Up 
+- Adding PostgreSQL to Express
+- Testing using a Database 
+
+
+

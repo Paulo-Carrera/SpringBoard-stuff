@@ -1,0 +1,44 @@
+COMMON USE CASES
+
+Recognizing Recursion (Where might recursion be useful?)
+
+FILESYSTEMS
+---------------------------------------------------------------------------------------------------
+                 /
+                / \
+            home/   tmp/
+             |        |
+            joel/    play.txt
+           /  |  \
+          /   |   \
+   test.py   index.html     tests.py
+---------------------------------------------------------------------------------------------------
+
+FRACTALS 
+
+
+PARSING
+1 x ( 2 + 3 x ( 4 + 5 x 6 ) + 7 ) 
+This is a particularly good, hard exercise to give yourseld.
+
+
+NESTED DATA 
+---------------------------------------------------------------------------------------------------
+<html>
+    <head>
+        <title>Title</title>
+    </head>
+    <body>
+        <h1>Body</h1>
+        <ul>
+            <li>One</li>
+            <li>Two
+                <ul>
+                    <li>Two A</li>
+                    <li>Two B</li>
+                </ul>
+            </li>
+        </ul>
+    </body>
+</html>
+---------------------------------------------------------------------------------------------------

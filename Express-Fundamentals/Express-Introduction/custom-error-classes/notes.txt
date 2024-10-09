@@ -1,0 +1,44 @@
+CUSTOM ERROR CLASSES
+
+How do we let Express know about an error ?
+There are quite a few ways, but the easiest is just to throw an error !
+------------------------------------------------------------------------------------------------------------------
+app.get('/users/:username', function(req, res, next){
+    if (!user) throw "Not found!";
+    return res.send({ user });
+})
+------------------------------------------------------------------------------------------------------------------
+
+
+A couple issues here
+- We can't easily see the stack trace
+- What about attaching a status code like 404 or 401
+- If we want that kind of flexibility, we need to create it !
+
+
+Let's make our own error class !
+demo/routing-app/expressError.js
+------------------------------------------------------------------------------------------------------------------
+/** ExpressError extends the normal JS error so we can easily
+    add a status when we make an instance of it.
+
+    The error-handling middleware will return this.
+*/
+
+class ExpressError extends Error{
+    constructor(message, status){
+        super();
+        this.message = message; 
+        this.status = status;
+        console.error(this.stack);
+    }
+}
+
+module.exports = ExpressError ;
+------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+

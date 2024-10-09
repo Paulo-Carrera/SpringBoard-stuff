@@ -1,0 +1,39 @@
+THE CALLSTACK
+
+The Tiniest Review
+Functions Calling Functions
+---------------------------------------------------------------------------------------
+function a(){
+    console.log("hello");
+    b();
+    console.log("coding");
+}
+
+function b(){
+    console.log("world");
+    c();
+    console.log("love");
+}
+
+function c(){
+    console.log("i")
+}
+---------------------------------------------------------------------------------------
+
+- a()
+hello 
+    - b()
+    world
+        - c()
+        i
+        undefined from c()
+    love 
+    undefined from b()
+coding 
+undefined from a()
+
+
+"hello world i love coding"
+
+
+

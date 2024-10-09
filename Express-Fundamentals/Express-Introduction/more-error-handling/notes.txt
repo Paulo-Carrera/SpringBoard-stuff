@@ -1,0 +1,49 @@
+MORE ERROR HANDLING
+
+Error Handling In Express 
+In Express, error handlers are special types of handlers.
+Here are the rules for building an error handler :
+
+- Error handlers should be at the bottom of the file, just above app.listen.
+This is because any handlers defined above can potentially throw errors!
+- They should match every HTTP verb and path : app.use(callback).
+- Callback signature to error handlers has 4 parameters instead of 3
+    - funciton (error, req, res, next)
+    - (This is how Express knows it's an error-handler)
+
+
+Handling Error Correctly
+-------------------------------------------------------------------------------------------------------------------------
+const ExpressError = require("./expressError")
+
+app.get("/users/:username", function(req, res, next){
+    try{
+        const user = USERS.find(u => u.username === req.params.username);
+        if(!user) throw new ExpressError("Not found!", 404);
+        return res.json({ user });
+    } catch(err){
+        return next(err);
+    }
+})
+
+// Global Error Handler goes down here 
+-------------------------------------------------------------------------------------------------------------------------
+
+
+Gloabal Error Handler Example
+demo/routing-app/app.js
+-------------------------------------------------------------------------------------------------------------------------
+app.use(function(err, req, res, next){
+    // the default status is 500 Internal Server Error 
+    let status = err.status || 500;
+    let message = err.message ;
+
+    // set the status and alert the user 
+    return res.status(status).json({
+        error : {message, status}
+    });
+});
+-------------------------------------------------------------------------------------------------------------------------
+
+
+

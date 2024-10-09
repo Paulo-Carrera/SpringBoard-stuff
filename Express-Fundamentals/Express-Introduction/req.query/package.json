@@ -1,0 +1,15 @@
+{
+  "name": "req.query",
+  "version": "1.0.0",
+  "main": "expressRoutes.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}

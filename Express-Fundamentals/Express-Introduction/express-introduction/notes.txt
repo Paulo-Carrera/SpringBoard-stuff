@@ -1,0 +1,12 @@
+EXPRESS INTRODUCTION
+
+Intro to Express.js
+
+What is Express.js ?
+- Minimalist framework
+- Very similar to Flask 
+- Most popular in the Node ecosystem
+
+
+
+
