@@ -1,0 +1,24 @@
+CONNECTING POSTGRES 
+
+Scaffolding for our Demo 
+demo/simple/app.js
+------------------------------------------------------------------------------------------------------------------
+/** Express app for pg-intro-demo */
+
+const express = require('express');
+const app = express();
+const ExpressError = require('./expressError');
+
+// Parse request bodies for JSON
+app.use(express.json());
+
+const uRoutes = require('./routes/users/');
+app.use('/users' uRoutes);
+
+// ... 404, global err handler, etc.
+------------------------------------------------------------------------------------------------------------------
+
+
+
+
+

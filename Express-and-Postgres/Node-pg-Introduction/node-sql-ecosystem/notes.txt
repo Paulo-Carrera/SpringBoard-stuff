@@ -1,0 +1,14 @@
+NODE SQL ECOSYSTEM
+
+Intro to Postgres with Node 
+
+Goals
+- Use pg to connect and execute SQL queries
+- Explain what SQL injection is and how to prevent it with pg 
+- Examine CRUD on a single resource with Express and pg 
+
+The Node SQL Ecosystem 
+- ORMs (object relational mappers) , like SQLAlchemy !
+- Query builders
+- SQL driver (what we will be using)
+- You can read more about it from the one and only Joel Burton!
