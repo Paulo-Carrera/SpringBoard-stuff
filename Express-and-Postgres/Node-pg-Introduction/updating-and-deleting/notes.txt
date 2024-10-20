@@ -1,0 +1,49 @@
+UPDATING AND DELETING
+
+API Example Continued : Update 
+demo/simple/routes/users.js
+------------------------------------------------------------------------------------------------------------------
+router.patch("/:id", async function(req, res, next){
+    try {
+        const {name, type} = req.body ;
+
+        const result = await db.query(
+            `UPDATE users SET name = $1, type = $2
+            WHERE id = $3
+            RETURNING id, name, type`,
+            [name, type, req.params.id]
+        );
+        return res.json(result.rows[0]);
+    }catch(err){
+        return next(err);
+    }
+});
+------------------------------------------------------------------------------------------------------------------
+
+API Example Continued : Delete 
+demo/simple/routes/users.js
+------------------------------------------------------------------------------------------------------------------
+/** Delete user, returning {message : "Deleted"} */
+
+router.delete("/:id", async function(req, res, next){
+    try{
+        const result = db.query(
+            `DELETE FROM users WHERE id = $1`,
+            [req.params.id]
+        );
+        return res.json({message : "Deleted"});
+    }catch(err){
+        return next(err);
+    }
+});
+------------------------------------------------------------------------------------------------------------------
+
+Committing 
+With SQLAlchemy, you had to commit after all changes - 
+because SQLAlchemy put all work into a db transaction.
+
+That isn't the case with pg - so you don't need to explicitly commit 
+(each INSERT/UPDATE/DELETE commits automatically)
+
+
+

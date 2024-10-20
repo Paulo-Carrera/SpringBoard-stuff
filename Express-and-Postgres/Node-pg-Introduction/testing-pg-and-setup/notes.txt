@@ -1,0 +1,74 @@
+TESTING PG AND SETUP 
+
+Testing our Database
+
+Adding a test database 
+We're going to need a different database for testing, so let's configure that !
+demo/cats-api/db.js
+-------------------------------------------------------------------------------------------------------------------------
+/** Database setup for cats. */
+const { Client } = require('pg');
+
+const DB_URI = (process.env.NODE_ENV === 'test')
+    ? 'postgresql:///cats_test'
+    : 'postgresql:///cats';
+
+let db = new Client({
+    connectionString : DB_URI
+});
+
+db.connect();
+
+module.exports = db;
+-------------------------------------------------------------------------------------------------------------------------
+
+Running Tests 
+Make sure you create test database first, otherwise they will hang.
+-------------------------------------------------------------------------------------------------------------------------
+$ createdb cats_test 
+$ psql cats_test < data.sql
+-------------------------------------------------------------------------------------------------------------------------
+Once you have database, run your tests as usual with jest 
+
+
+Setting Up and Tearing Down the test suite
+Make sure we're using test DB for our tests :
+demo/cats-api/routes/cats.test.js 
+-------------------------------------------------------------------------------------------------------------------------
+// connect to right DB --- set before loading db.js 
+process.env.NODE_ENV = "test";
+
+// npm packages 
+const request = require("supertest");
+
+// app imports 
+const app = require("../app");
+const db = require("../db");
+-------------------------------------------------------------------------------------------------------------------------
+
+
+Setting Up and Tearing Down the test suite
+-------------------------------------------------------------------------------------------------------------------------
+let testCat ;
+
+beforeEach(async function(){
+    let result = await db.query(
+        `INSERT INTO
+            cats (name) VALUES ('TestCat')
+            RETURNING id, name`);
+        testCat = result.rows[0];
+});
+-------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
+afterEach(async function(){
+    // delete any data created by test 
+    await db.query(`DELETE FROM cats`);
+});
+
+afterAll(async function(){
+    // close db connection 
+    await db.end();
+});
+-------------------------------------------------------------------------------------------------------------------------
+
+

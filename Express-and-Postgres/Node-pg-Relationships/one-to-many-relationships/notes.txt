@@ -1,0 +1,64 @@
+ONE-TO-MANY RELATIONSHIPS 
+
+Node Postgres Relationships 
+
+Goals
+- Work with 1:M relationships in pg 
+- Work with M:M relationships in pg 
+- Handle missing data by sending 404s
+
+
+One to Many Relationships 
+We want our API to include :
+GET /users/1
+Return detail of user and list of messages :
+---------------------------------------------------------------------------------------------------------------------------------------------
+{
+    name : "Juanita",
+    type : "admin",
+    messages : [
+        { id : 1, msg : "msg #1" },
+        { id : 2, msg : "msg #2" }
+    ]
+}
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+GET /users/[id] With Messages 
+demo/routes/users.js
+---------------------------------------------------------------------------------------------------------------------------------------------
+/** Get user : { name, type, messages : [{msg, msg}] } */
+
+router.get(":/id", async function(req, res, next){
+    try {
+        const userRes = await db.query(
+            `SELECT name, type FROM users WHERE id = $1`,
+            [req.params.id]
+        );
+        const messageRes = await db.query(
+            `SELECT id, msg FROM messages WHERE user_id = $1`,
+            [req.params.id]
+        );
+        const user = userRes.rows[0];
+        user.messages = messagesRes.rows;
+        return res.json(user);
+    }catch(err){
+        return next(err)
+    }
+});
+---------------------------------------------------------------------------------------------------------------------------------------------
+(results)
+---------------------------------------------------------------------------------------------------------------------------------------------
+{
+    name : "Juanita",
+    type : "admin",
+    messages : [
+        { id : 1, msg : "msg #1" }
+        { id : 2, msg : "msg #2" }
+    ]
+}
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+

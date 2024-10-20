@@ -1,0 +1,20 @@
+WRITING TESTS WITH NODE PG CONTINUED 
+
+Testing Create
+demo/cats-api/routes/cats.test.js
+-------------------------------------------------------------------------------------------------------------------------------
+/** POST /cats - create a cat from data; return '{cat : cat}' */
+
+describe("POST /cats", function(){
+    test("Creates a new cat", async function(){
+        const response = await request(app).post('/cats').send({
+            name : 'Ezra'
+        });
+        expect(response.statusCode).toEqual(201);
+        expect(response.body).toEqual({
+            cat : {id : expect.any(Number), name : 'Ezra' }
+        });
+    });
+});
+-------------------------------------------------------------------------------------------------------------------------------
+

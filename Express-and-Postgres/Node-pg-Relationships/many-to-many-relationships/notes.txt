@@ -1,0 +1,14 @@
+MANY-TO-MANY RELATIONSHIPS
+
+Many to Many Relaionships 
+We want our API to include :
+GET /messages/1 
+Return info about message and associate tag names :
+-------------------------------------------------------------------------------------------------------------------------------
+{
+    id : 1,
+    msg : "msg #1",
+    tags : ["Python", "JavaScript"]
+}
+-------------------------------------------------------------------------------------------------------------------------------
+

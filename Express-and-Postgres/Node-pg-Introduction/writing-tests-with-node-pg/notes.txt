@@ -1,0 +1,57 @@
+WRITING TESTS WITH NODE PG
+
+Testing CRUD Actions
+
+Our Restful JSON API 
+What routes do we need for a RESTful JSON API with full CRUD on cats ?
+(ZOMG so many acronyms.)
+
+HTTP Verb       ROUTE       Response
+GET             /cats       Display all cats 
+GET             /cats/:id   Display a cat 
+POST            /cats       Create a cat 
+PUT / PATCH     /cats/:id   Update a cat 
+DELETE          /cats/:id   Delete a cat 
+
+
+Testing Read 
+demo/cats-api/routes/cats.test.js
+------------------------------------------------------------------------------------------------------------------------------
+/** GET /cats - returns `{cats: [cat, ...]}` */
+
+describe("GET /cats", function(){
+    test("Gets a list of 1 cat", async function(){
+        const response = await request(app).get('/cats');
+        expect(response.statusCode).toEqual(200);
+        expect(response.body).toEqual({
+            cats : [testCat]
+        });
+    });
+});
+------------------------------------------------------------------------------------------------------------------------------
+
+Testing Read
+demo/cats-api/routes/cats.test.js 
+------------------------------------------------------------------------------------------------------------------------------
+/** GET /cats/[id] - return data about one cat : '{cat : cat}' */
+
+describe("GET /cats/:id", function(){
+    test("Gets a single cat", async function(){
+        const response = await request(app).get(`/cats/${testCat.id}`);
+        expect(response.statusCode).toEqual(200);
+        expect(response.body).toEqual({cat : testCat});
+    });
+
+    test("Responds with 404 if can't find cat", async function(){
+        const response = await request(app).get(`/cats/0`);
+        expect(response.statusCode).toEqual(404);
+    });
+});
+------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+

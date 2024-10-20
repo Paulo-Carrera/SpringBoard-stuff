@@ -1,0 +1,99 @@
+SQL INJECTION
+
+demo/simple/routes/users.js
+---------------------------------------------------------------------------------------------------------------------
+/** Search by user type. */
+
+router.get('/search', async function (req, res, next){
+    try {
+        const type = req.body.type; 
+
+        const results = await db.query(
+            `SELECT id, name, type
+            FROM users 
+            WHERE type = '${type}'`);
+        
+        return res.json(results.rows);
+    }
+    catch(err){
+        return next(err);
+    }
+});
+---------------------------------------------------------------------------------------------------------------------
+
+(results for 'staff' type)
+---------------------------------------------------------------------------------------------------------------------
+[{
+    'id' : 2 ,
+    'name' : 'Jenny',
+    'type' : 'staff'
+}]
+---------------------------------------------------------------------------------------------------------------------
+
+But there's a problem ...
+
+SQL Injection 
+What is SQL Injection ?
+
+A technique where an attacker tries to execute
+undesirable SQL statements on your database.
+It's a common attack, and it's easy to be vulnerable if you aren't careful !
+
+What's the Problem ?
+If our search type is "staff", everything works fine. 
+But what if our search type is "bwah-hah'; DELETE FROM users; --" ? 
+
+`SELECT * FROM users WHERE type ='"bwah-hah'; DELETE FROM users; --"'`
+
+An attack like this can delete all the users from out database !
+
+
+
+Solution: Parameterized Queries
+- To prevent agains SQL injection, we need to sanatize our inputs
+- ORMs typically do this for you automatically
+- We can sanitize our inputs by using parameterized queries 
+
+API Example Continued: Create V2 
+Here's the same approach, but safe from SQL injection. 
+demo/simple/routes/users.js 
+---------------------------------------------------------------------------------------------------------------------
+// (Fixed) Search by user type 
+
+router.get("/good-search", async function(req, res, next){
+    try{
+        const type = req.body.type;
+
+        const results = await db.query(`
+        SELECT id, name, type 
+        FROM users
+        WHERE type = $1`, [type]);
+
+        return res.json(results.rows);
+    }
+    catch(err){
+        return next(err);
+    }
+});
+---------------------------------------------------------------------------------------------------------------------
+
+(results for 'staff' type)
+---------------------------------------------------------------------------------------------------------------------
+[{
+    "id" : 2 ,
+    "name" : "Jenny",
+    "type" : "staff"
+}]
+---------------------------------------------------------------------------------------------------------------------
+
+
+Parameterized Queries Overview
+- In your SQL statement, represent variables like $1, $2, $3, etc. 
+    - You can have as many variables as you want
+- For the second argument to db.query, pass an array of values 
+    - $1 will evaluate to the first array element, $2 to the second, etc.
+- NOTE : the variable naming is 1-indexed! NOT 0-indexed!
+
+
+
+

@@ -18,6 +18,81 @@ app.use('/users' uRoutes);
 // ... 404, global err handler, etc.
 ------------------------------------------------------------------------------------------------------------------
 
+pg
+- Similar to psycopg2 with Python 
+- Allows us to establish a connection to the database and execute SQL
+------------------------------------------------------------------------------------------------------------------
+$ npm install pg 
+------------------------------------------------------------------------------------------------------------------
+
+
+Using pg 
+It's common to abstract this logic to another file,
+so let's create a file db.js 
+------------------------------------------------------------------------------------------------------------------
+/** Database setup for users. */
+
+const { Client } = require('pg');
+
+let DB_URI;
+
+if(process.env.NODE_ENV === 'test'){
+    DB_URI = 'postgresql:///users_test';
+}else{
+    DB_URI = 'postgresql:///users';
+}
+
+let db = new Client({
+    connectionString : DB_URI
+});
+
+db.connect();
+
+module.exports = db;
+------------------------------------------------------------------------------------------------------------------
+
+
+QUERIES 
+Making our first query
+demo/simple/routes/users.js
+------------------------------------------------------------------------------------------------------------------
+const db = require('../db');
+------------------------------------------------------------------------------------------------------------------
+demo/simple/routes/users.js
+------------------------------------------------------------------------------------------------------------------
+/** Get users : [user, user, user] */
+
+router.get('/all', function(req, res, next){
+    const results = db.query(
+        `SELECT * FROM users`);
+    
+    return res.json(results.rows);
+});
+------------------------------------------------------------------------------------------------------------------
+
+(results)
+------------------------------------------------------------------------------------------------------------------
+[nothing!]
+------------------------------------------------------------------------------------------------------------------
+
+
+What's the bug here ?
+DB queries are asynchronous! We have to wait for the query to finish before !
+
+Fixing with async/await 
+------------------------------------------------------------------------------------------------------------------
+/** (Fixed) Get users: [user, user, user] */
+
+router.get('/', async function(req, res, next){
+    try{
+        const results = await db.query(`SELECT id,name,type FROM users;`);
+        
+        return res.json(results.row);
+    }catch(err){
+        return next(err);
+    }
+});
+------------------------------------------------------------------------------------------------------------------
 
 
 

@@ -1,0 +1,14 @@
+CREATING
+
+More CRUD Actions
+
+RETURNING clause
+In SQL, for INSERT/UPDATE/DELETE, you can have a RETURNING clause.
+This is to return data that was inserted, updated or deleted:
+-----------------------------------------------------------------------------------------------------------------
+INSERT INTO users (name, type) VALUES (...) RETURNING id, name ;
+INSERT INTO users (name, type) VALUES (...) RETURNING * ;
+-----------------------------------------------------------------------------------------------------------------
+
+
+

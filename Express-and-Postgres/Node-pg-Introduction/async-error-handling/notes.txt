@@ -1,0 +1,14 @@
+ASYNC ERROR HANDLING
+
+What's the bug here?
+DB queries are asynchronous! We have to wait for the query to finish before!
+
+Having errors in async functions are problematic unless we use try and catch 
+
+When were writing route handler callbacks, we need to use the try catch pattern
+so the errors do not break the app!
+
+Catch the errors and call next with that errors
+
+
+
