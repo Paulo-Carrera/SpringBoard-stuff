@@ -1,0 +1,59 @@
+AUTHORIZATION MIDDLEWARE
+
+Verifying a token 
+That works, but can we refactor this ?
+- We don't want to repeat this one every route
+- How can we intercept the request and verify the token ?
+- Middleware !
+
+
+AUTHENTICATION MIDDLEWARE
+demo/auth-api/middleware/auth.js
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/** Auth JWT token, add auth'd user (if any) to req. */
+
+function authenticateJWT(req, res, next){
+    try{
+        const tokenFromBody = req.body._token;
+        const payload = jwt.verify(tokenFromBody, SECRET_KEY);
+        req.user = payload; 
+        return next();
+    }catch(err){
+        // error in this middleware isn't error -- continue on 
+        return next();
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+(Stores user data on req for later requests)
+
+
+USING MIDDLEWARE ON ALL ROUTES 
+demo/auth-api/app.js 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+const express = require("express");
+const app = express();
+const routes = require("./routes/auth");
+const ExpressError = require(./expressError);
+const { authenticateJWT } = require("./middleware/auth");
+
+app.use(express.json());
+app.use(authenticateJWT);
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Middleware runs on all routes defined after this line.
+
+
+AUTHORIZATION MIDDLEWARE
+demo/auth-api/middleware/auth.js 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/** Require user or raise 401 */
+
+function ensureLoggedIn(req, res, next){
+    if(!req.user){
+        const err = new ExpressError("UNAUTHORIZED", 401);
+    }else{
+        return next();
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

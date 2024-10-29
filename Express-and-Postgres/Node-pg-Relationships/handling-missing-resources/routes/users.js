@@ -1,7 +1,8 @@
 const db = require('../db'); // import db 
 const express = require('express'); // import express
 const router = express.Router(); // create express router
-
+const expressError = require('../expressError'); // import expressError
+const ExpressError = require('../expressError');
 
 router.get('/', async(req,res,next)=>{
     try{
@@ -26,6 +27,9 @@ router.get('/:id', async(req,res,next)=>{
             `SELECT id, msg FROM messages WHERE user_id = $1`, 
             [id]
         );
+        if (userResults.rows.length === 0){
+            throw new ExpressError(`User not found with id ${id}`, 404);
+        }
         const user = userResults.rows[0];                   // save user in variable
         user.messages = messageResults.rows;                // save messages in the user variable 
         return res.send(user);

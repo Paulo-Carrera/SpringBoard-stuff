@@ -1,0 +1,24 @@
+JWT INTRO
+
+JSON Web Tokens 
+
+Authentication in Flask (review)
+- Make request with username / password to login route
+- Server authenticates & puts user info in the session
+    - Session is encoded & signed with Flask-specific scheme
+- Session info is sent back to browser in cookie 
+- Session info is automatically resent with every request via cookie 
+
+
+Authentication in Flask 
+- This works well for traditional web apps & is straightforward to do 
+- What if 
+    - We didn't want to send auth info with certain requests ?
+    - We wanted to share authentication info across multiple APIs / hostnames ?
+- We'll use a more API-server friendly process !
+
+"Think of JWTs as a hotel key that can get you into your room, the gym and into elevators.
+JWTs and OAuth authenticate a user across multiple web applications / websites."
+
+
+

@@ -1,0 +1,21 @@
+SIMPLE OO APPROACH PART 1
+
+Simple OO Model
+- We can make a single class for "all cat-related functions"
+- It won't hold data 
+- You won't ever instantiate it !
+- All the methods are static (called on Cat)
+- Benefit : help organization, gets SQL out of routes 
+
+Getting All Cats
+Cat model 
+--------------------------------------------------------------------------------------------------------------------------
+/** get all cats: returns [{id, name, age}, ...] */
+
+static async getAll(){
+    const result = await db.query(
+        `SELECT * FROM cats`
+    );
+    return result.rows;
+}
+--------------------------------------------------------------------------------------------------------------------------

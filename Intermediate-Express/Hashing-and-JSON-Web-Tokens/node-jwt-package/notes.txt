@@ -1,0 +1,39 @@
+NODE JWT PACKAGE
+
+Using JWTs 
+Install JSON web token : 
+---------------------------------------------------------------------------------------------------------------------------
+$ npm install jsonwebtoken
+---------------------------------------------------------------------------------------------------------------------------
+
+
+Creating Tokens 
+jwt.sign(payload, secret-key, jwt-options)
+- payload : object to store as payload of token 
+- secret-key : secret string used to "sign" token 
+- jwt-options is optional object of settings for making the token 
+
+This returns the token (a string)
+
+Decoding / Verifying Tokens 
+jwt.decode(token)
+    Return rhe payload from the token (works without secret key.
+    Remember, the tokens are signed, not enciphered!)
+jwt.verify(token, secret-key)
+    Verify token signature and return payload is valid. If not, raise error.
+
+
+
+Creating Tokens 
+---------------------------------------------------------------------------------------------------------------------------
+const jwt = require('jsonwebtoken');
+
+const SECRET_KEY = 'oh-so-secret';
+const JWT_OPTIONS = {expiresIn : 60 * 60}; // 1 hour
+
+let payload = {username : 'jane'};
+let token = jwt.sign(payload, SECRET_KEY, JWT_OPTIONS);
+---------------------------------------------------------------------------------------------------------------------------
+
+
+

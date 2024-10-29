@@ -1,0 +1,9 @@
+INTRO TO NODE AUTHENTICATION
+
+Hashing and JWT (JSON Web Tokens) with Node 
+
+Goals
+- Hash passwords with Bcrypt
+- Using JSON web tokens for API authentication 
+- Use middleware to simplify route security
+

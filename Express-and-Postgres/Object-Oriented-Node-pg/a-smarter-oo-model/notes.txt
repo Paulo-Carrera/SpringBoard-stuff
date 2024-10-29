@@ -1,0 +1,10 @@
+A SMARTER OO MODEL 
+
+Smarter OO Model 
+- We can make a more traditional OO class
+- You will instantiate it - once per dog !
+- It will hold data specific to each dog 
+- It has static methods
+    - To get all dogs, get a particular dog 
+- It has regular methods 
+- It's like a mini ORM 

@@ -1,0 +1,34 @@
+NODE PG OO INTRO
+
+Database OO Design Patterns
+
+Goals
+- Refactor our Express apps to seperate view logic (routing)
+from model logic (data)
+- Compare different OO designs for interfacing with our database 
+- Borrow useful ideas from ORMs to build our own model layers !
+
+Object Orientation
+Why do we use Object Orientation ?
+To help organize our code !
+
+Abstraction
+OO can offer abstraction, the ability to hide implementation details
+when they aren't needed.
+- Not everyone should have to understand everything
+- Only one person has to worry about SQL, validation, etc 
+
+Encapsulation
+OO can offer encapsulation, the ability to group functionality 
+into larger logical pieces.
+- To get in a "capsule"
+    - Everything related to cat data/functionality lives in Cat 
+
+Polymorphism
+OO can offer polymorphism, the ability to implement similar functionality 
+in different classes.
+- The ability to make similar things work similarly
+    - We could have other kinds of animals with same API  
+    - For example ; dogs and cats could both have a speak method, even though it 
+    behaves differently for different animals("Meow" vs "Woof")
+

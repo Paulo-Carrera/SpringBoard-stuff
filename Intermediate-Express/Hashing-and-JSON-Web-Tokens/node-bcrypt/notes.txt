@@ -1,0 +1,143 @@
+NODE BCRYPT 
+
+PASSWORD HASHING WITH BCRYPT
+
+Similar to Flask, but with asynchronous API.
+To use, install library :
+--------------------------------------------------------------------------------------------------------------------------------------
+$ npm install bcrypt
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+PASSWORD HASHING WITH BCRYPT
+
+bcrypt.hash(password-to-hash, work-factor)
+Hash password, using work factor (12 is a good choice).
+Returns promise - resolve to get hashed password.
+
+bcrypt.compare(password, hashed-password)
+Check if password is valid.
+Returns promise - resolve to get boolean.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+paulo@ThisPC22:~/SpringBoard/Intermediate-Express/Hashing-and-JSON-Web-Tokens/node-bcrypt$ node
+Welcome to Node.js v18.20.4.
+Type ".help" for more information.
+> const bcrypt= require("bcrypt")
+undefined
+> bcrypt
+{
+  genSaltSync: [Function: genSaltSync],
+  genSalt: [Function: genSalt],
+  hashSync: [Function: hashSync],
+  hash: [Function: hash],
+  compareSync: [Function: compareSync],
+  compare: [Function: compare],
+  getRounds: [Function: getRounds]
+}
+> bcrypt.hash("lokiiscut3", 12)
+Promise {
+  <pending>,
+  [Symbol(async_id_symbol)]: 400,
+  [Symbol(trigger_async_id_symbol)]: 6
+}
+> bcrypt.hash("lokiiscut3", 12).then(data => console.log(data))
+Promise {
+  <pending>,
+  [Symbol(async_id_symbol)]: 706,
+  [Symbol(trigger_async_id_symbol)]: 704
+}
+> $2b$12$I8iH/grLNeRgbUqzBZMHJ.uRBb6Ko56kXJaIM.YLlNbz/GoqHdlPm
+
+
+
+
+
+
+
+paulo@ThisPC22:~/SpringBoard/Intermediate-Express/Hashing-and-JSON-Web-Tokens/node-bcrypt$ node
+Welcome to Node.js v18.20.4.
+Type ".help" for more information.
+> clear
+Uncaught ReferenceError: clear is not defined
+> const bcrypt = require('bcrypt')
+undefined
+> const hashedPw = '$2b$12$I8iH/grLNeRgbUqzBZMHJ.uRBb6Ko56kXJaIM.YLlNbz/GoqHdlPm'
+undefined
+> bcrypt.compare("MONKEYbrainz123", '$2b$12$I8iH/grLNeRgbUqzBZMHJ.uRBb6Ko56kXJaIM.YLlNbz/GoqHdlPm')
+Promise {
+  <pending>,
+  [Symbol(async_id_symbol)]: 486,
+  [Symbol(trigger_async_id_symbol)]: 6
+}
+> bcrypt.compare("MONKEYbrainz123", '$2b$12$I8iH/grLNeRgbUqzBZMHJ.uRBb6Ko56kXJaIM.YLlNbz/GoqHdlPm').then(res => console.log(res))
+Promise {
+  <pending>,
+  [Symbol(async_id_symbol)]: 614,
+  [Symbol(trigger_async_id_symbol)]: 612
+}
+> false
+> bcrypt.compare("lokiiscut3", '$2b$12$I8iH/grLNeRgbUqzBZMHJ.uRBb6Ko56kXJaIM.YLlNbz/GoqHdlPm').then(res => console.log(res))
+Promise {
+  <pending>,
+  [Symbol(async_id_symbol)]: 1016,
+  [Symbol(trigger_async_id_symbol)]: 1014
+}
+> true

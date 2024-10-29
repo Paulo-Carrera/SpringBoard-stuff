@@ -1,0 +1,19 @@
+COMPARING APPROACHES
+
+WHICH IS BETTER ?
+
+- "Simple Class" (no data, only static methods) (cats)
+    - Can be easier to write the class 
+    - Fewer SQL queries may fire (compare delete between Cat and Dog)
+    - Doing more interesting things can be trickier 
+
+- "Smarter Class" (data, real methods) (dogs)
+    - Real attributes can be handy !
+    - Easier to do validation
+    - Can do things like cat.speak() rather than Cat.speak(id) 
+
+
+Are There ORMs For JavaScript ?
+Yes !
+There's a nice one called Sequelize
+Not as popular as ORMs in other languages, though.

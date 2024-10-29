@@ -1,0 +1,70 @@
+EXPRESS LOGIN IN JWT
+
+Using JWTs in Express 
+
+Login 
+demo/auth-api/routes/auth.js 
+-----------------------------------------------------------------------------------------------------------------------------
+/** (Fixed) Login : returns JWT on success */
+
+router.post('/login', async function(req, res, next){
+    try {
+        const { username, password } = req.body;
+        const result = await db.query(
+            `SELECT password FROM users WHERE username = $1`,
+            [username]
+        );
+        let user = result.rows[0];
+
+        if(user){
+            if (await bcrypt.compare(password, user.password) === true){
+                let token = jwt.sign({ username }, SECRET_KEY);
+                return res.json({ token });
+            }
+        }
+        throw new ExpressError('Invalid user / password', 400);
+    }catch(err){
+        return next(err);
+    }
+});
+-----------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+Protected Routes 
+After client receives token, they should send with
+every future request that needs authentication.
+
+For our demo, we'll look in req.body for a token called _token 
+Front End JS
+-----------------------------------------------------------------------------------------------------------------------------
+// get token from login route 
+let resp = await axios.post(
+    "/login", {username : "jane", password : "secret"});
+let token = resp.data;
+
+// use that token for future requests
+await axios.get("/secret", { params : {_token} });
+await axios.post("/other", { _token : token});
+-----------------------------------------------------------------------------------------------------------------------------
+
+
+Verifying a Token 
+demo/auth-api/routes/auth.js
+-----------------------------------------------------------------------------------------------------------------------------
+/** Secret-1 route that only users can access */
+
+router.get('/secret-1', async function(req, res, next){
+    try {
+        // try to get the token out of the body 
+        const tokenFromBody = req.body._token;
+
+        // verify this was a token signed with OUR secret key 
+        // (jwt.verify raises error if not)
+        jwt.verify(tokenFromBody, SECRET_KEY);
+
+        return res.json({ message : "Made it!" });
+    }
+});
+-----------------------------------------------------------------------------------------------------------------------------

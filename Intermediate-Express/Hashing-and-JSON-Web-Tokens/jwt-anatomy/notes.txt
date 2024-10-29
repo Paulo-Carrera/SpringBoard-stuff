@@ -1,0 +1,49 @@
+JWT ANATOMY
+
+Authentication Via Tokens
+For our Express API apps, we'll handle authentication differently :
+- Make request with username / password to AJAX login route
+- Server authenticates & returns token in JSON
+    - Token is encoded & signed with open standard, "JSON Web Token"
+- Front-end JavaScript receives token & stores (in var or localStorage)
+- For every future request, browser sends token in request 
+    - Server gets token from request & validates token 
+
+
+JSON Web Tokens 
+Homepage of JSON Web Tokens 
+JWTs are an open standard and are implemented across technology stacks,
+making it simple to share tokens across different services 
+JWTs can store any arbitrary "payload" of info, which are "signed" using a 
+secret key, so they can be validated later (similar to Flask's session).
+
+JSON Web Tokens
+The JWT token itself is a string comprising of three parts :
+- Header : metadata about token (signing algorithm used & type of token)
+- Payload : data to be stored in token (typically and object)
+    - Often, this will store things like the user ID 
+    - This is encoded not encrypted - don't put secret info in here !
+- Signature : version of header & payload, signed with secret key 
+    - Uses algorithm specified in header (we'll use default, "HMAC-SHA256")
+
+
+HEADER : ALGORITHM & TOKEN TYPE
+{ 
+    "alg" : "HS256",
+    "typ" : "JWT"
+}
+
+PAYLOAD : DATA
+{
+    "sub" : "1234567890",
+    "name" : "John Doe",
+    "permission" : "Admin",
+    "favColor" : "Purple",
+    "iat" : 1516239022
+}
+
+VERIFY SIGNATURE 
+The header and payload are both encoded in BASE64 , along with a new "signature".
+The signature's purpose is to verify its origins or verify the identity of the sender.
+Pass in a server secret to the signature. 
+

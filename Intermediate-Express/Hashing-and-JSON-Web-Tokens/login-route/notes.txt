@@ -1,0 +1,7 @@
+LOGIN ROUTE 
+
+Logging In
+- Try to find user first
+    - If exists, compare hashed password to hash of login password 
+- bcrypt.compare() resolves to boolean - if true, password match !
+
