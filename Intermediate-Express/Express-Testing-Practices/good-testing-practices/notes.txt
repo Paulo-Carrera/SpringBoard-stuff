@@ -1,0 +1,14 @@
+GOOD TESTING PRACTICES
+
+Goals
+- Revisit some essential concepts with testing 
+- Understand what mocking is 
+- Examine end to end tests with Cypress
+
+Good Testing Practices 
+- Make sure you write tests!
+- Don't get too attached to coverage percentages
+- Make sure in your readme you specify how to run the tests!
+
+
+

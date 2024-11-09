@@ -1,0 +1,9 @@
+JSONSCHEMA BASICS
+
+JSON Schema Basics 
+- JSON Schema is a standard specification for describing 
+  JSON in a human and machine-readable format.
+
+
+
+

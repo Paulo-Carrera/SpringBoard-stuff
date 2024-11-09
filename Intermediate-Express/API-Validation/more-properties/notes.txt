@@ -1,0 +1,14 @@
+MORE PROPERTIES
+
+
+Things to be aware of!
+- Validation can be quite strict, so take care when setting up schema
+- As you add new fields/columns, make sure you update schema 
+- You may want different schemas for updating/creating
+
+
+We're just scratching the surface!
+- You can create extremely robust validation systems with JSONSchema
+- You can customize almost everything, from type to error message
+
+

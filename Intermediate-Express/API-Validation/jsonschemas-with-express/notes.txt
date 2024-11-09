@@ -1,0 +1,29 @@
+JSON SCHEMAS WITH EXPRESS
+
+The Steps
+demo/routes/books.js
+-----------------------------------------------------------------------------------------------------------------------------------------
+const jsonschema = require("jsonschema");
+const bookSchema = require("../schemas/bookSchema.json");
+
+router.post("/with-validation", function(req, res, next){
+    const result = jsonschema.validate(req.body, bookSchema);
+
+    if(!result.valid){
+        // pass validation errors to error handler 
+        // (the "stack" key is generally the most useful)
+        let listOfErrors = result.errors.map(error => error.stack);
+        let error = new ExpressError(listOfErrors, 400);
+        return next(error);
+    }
+
+    // at this point in code, we know we have a valid payload
+    const { book } = req.body;
+    return res.json(book);
+});
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+

@@ -1,0 +1,39 @@
+END TO END TEST WITH CYPRESS
+
+End to End Tests
+- End-to-end testing tests an application's flow from start to end.
+- The purpose of E2E testing is to simulate an entire real user scenario.
+
+
+Pros of E2E tests 
+- You are also going to find a lot more user-impacting bugs up front,
+  because you are working directly with the application at the user's
+  perspective.
+- You don't have to be as familiar with the specific implementation, or even
+  how coding works to write automated UI tests. Many tools allow you to 
+  just click record, perform some actions, and have a script.
+
+
+Cons of E2E tests 
+- E2E tests are not nearly as maintainable as unit tests.
+  They break easily when one feature changes.
+- They are much more time consuming to write and can be handled
+  by QA teams.
+
+
+Common E2E Testing tools 
+- Selenium 
+- Cypress 
+
+
+Basic Cypress Setup
+--------------------------------------------------------------------------------------------------------
+$ npm i --save-dev cypress 
+--------------------------------------------------------------------------------------------------------
+
+In package.json :
+--------------------------------------------------------------------------------------------------------
+"scripts" : {
+    "cypress:open" : "cypress open"
+},
+--------------------------------------------------------------------------------------------------------

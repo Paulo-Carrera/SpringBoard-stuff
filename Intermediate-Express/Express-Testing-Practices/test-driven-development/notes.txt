@@ -1,0 +1,19 @@
+TEST DRIVEN DEVELOPMENT
+
+Test Driven Development 
+- Write tests first - they will fail !
+- Only write the code necessary to get the tests to pass 
+- Focus on completing the task/user story at hand 
+- As you write more code, keep running tests 
+  and make sure they are passing 
+
+
+Test Driven Development
+Red, Green, Refactor
+- Your tests will fail (red)
+- You write the code to get the tests to pass (green)
+- You refactor !
+
+
+
+
